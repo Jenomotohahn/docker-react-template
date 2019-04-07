@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 router
-  .route("/users")
+  .route("/")
   .get((req, res) => {
-    return new req.database.User()
+    // console.log("hello");
+    return new req.database.Task()
       .fetchAll()
-      .then(users => {
-        return res.json(users);
+      .then(data => {
+        console.log("hello");
+        return res.json(data);
       })
       .catch(err => {
         console.log(err);
@@ -15,11 +17,11 @@ router
       });
   })
   .post((req, res) => {
-    const username = req.body.username;
-    return new req.database.User({ username })
+    return new req.database.Task(req.body)
       .save()
-      .then(user => {
-        return res.json({ success: true });
+      .then(saved => {
+        console.log(saved);
+        res.redirect("/");
       })
       .catch(err => {
         console.log(err);
