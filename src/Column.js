@@ -1,11 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import Card from "./Card";
 
 const Column = props => {
   return (
     <div id={props.status + "column"} className="column">
-      <Card class={props.status} status={props.status} task={props.task} />
+      <Card
+        id={props.id}
+        class={props.status}
+        status={props.status}
+        task={props.task}
+      />
     </div>
   );
 };

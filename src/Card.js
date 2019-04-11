@@ -1,26 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Card = props => {
   return (
-    <div className={props.class}>
+    <div id={props.id} className={props.class}>
       <h2>Status: {props.status}</h2>
       <h3>Task: {props.task}</h3>
-      <form className="delete" action="tasks/delete" method="POST">
-        <button onClick={onClickButton} type="button">
-          Delete
-        </button>
+      <form
+        className="delete"
+        action={`tasks/delete/${props.id}`}
+        method="POST"
+      >
+        <button type="submit">Delete</button>
       </form>
       <form className="edit" action="tasks/edit" method="POST">
-        <button onClick={onClickButton} type="button">
-          Edit
-        </button>
+        <button type="submit">Edit</button>
       </form>
     </div>
   );
 };
-
-function onClickButton(event) {
-  event.preventDefault();
-}
 
 export default Card;

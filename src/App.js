@@ -15,6 +15,7 @@ class App extends Component {
     this.getData = this.getData.bind(this);
     this.getData();
   }
+
   getData() {
     fetch("/tasks")
       .then(body => {
@@ -23,7 +24,7 @@ class App extends Component {
         return body.json();
       })
       .then(data => {
-        // console.log(data);
+        console.log("data", data);
         this.setState({ cardArr: data });
       })
       .catch(err => {
@@ -31,10 +32,16 @@ class App extends Component {
       });
   }
 
+  // componentDidMount() {
+  //   console.log("render2", this.state);
+  // }
+
   render() {
     const { cardArr } = this.state;
-    // const statusArr = [new Set(cardArr.map(x => x.status))];
-    // console.log(statusArr);
+    console.log("cardArr", cardArr);
+    const statusArr = [new Set(cardArr.map(x => x.status))];
+    console.log(statusArr);
+
     return (
       <div id="main">
         <div>
@@ -47,6 +54,7 @@ class App extends Component {
             .map(card => (
               <Column
                 key={card.id.toString()}
+                id={card.id.toString()}
                 status={card.status}
                 task={card.task}
                 class={card.status}
@@ -60,6 +68,7 @@ class App extends Component {
             .map(card => (
               <Column
                 key={card.id.toString()}
+                id={card.id.toString()}
                 status={card.status}
                 task={card.task}
                 class={card.status}
@@ -73,6 +82,7 @@ class App extends Component {
             .map(card => (
               <Column
                 key={card.id.toString()}
+                id={card.id.toString()}
                 status={card.status}
                 task={card.task}
                 class={card.status}

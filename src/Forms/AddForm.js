@@ -1,5 +1,4 @@
-import React, { component } from "react";
-import reactDom from "react-dom";
+import React from "react";
 
 export const AddForm = () => (
   <div>
@@ -28,5 +27,9 @@ export const AddForm = () => (
     </form>
   </div>
 );
+
+function onClickButton(event) {
+  event.preventDefault();
+}
 
 export default AddForm;

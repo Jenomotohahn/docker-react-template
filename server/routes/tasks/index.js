@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 router
   .route("/")
   .get((req, res) => {
@@ -28,5 +27,20 @@ router
         res.sendStatus(500);
       });
   });
+router.route("/delete/:id").post((req, res) => {
+  console.log("DELETE!");
+  console.log("req params", req.params.id);
+  return new req.database.Task()
+    .where("id", req.params.id)
+    .destroy()
+    .then(card => {
+      console.log("card has been deleted", card);
+      res.redirect("/");
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
