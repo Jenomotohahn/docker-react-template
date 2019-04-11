@@ -6,11 +6,11 @@ export const AddForm = () => (
     <h2>Create New</h2>
     <form action="tasks" method="post">
       <div>
-        <label for="task">Task: </label>
+        <label htmlFor="task">Task: </label>
         <input name="task" />
       </div>
       <div>
-        <label for="select">Status:</label>
+        <label htmlFor="select">Status:</label>
         <select name="status">
           <option name="status" value="active">
             Active

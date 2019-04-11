@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import AddForm from "./Forms/AddForm";
+import Column from "./Column";
 // const ReactDOM = require("react-dom");
 // const Tasks = require("../model/Tasks");
 
@@ -22,17 +23,18 @@ class App extends Component {
         return body.json();
       })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState({ cardArr: data });
       })
       .catch(err => {
         console.log(err);
       });
   }
+
   render() {
     const { cardArr } = this.state;
-    const statusArr = [new Set(cardArr.map(x => x.status))];
-    console.log(statusArr);
+    // const statusArr = [new Set(cardArr.map(x => x.status))];
+    // console.log(statusArr);
     return (
       <div id="main">
         <div>
@@ -43,7 +45,7 @@ class App extends Component {
           {cardArr
             .filter(card => card.status === "pending")
             .map(card => (
-              <Card
+              <Column
                 key={card.id.toString()}
                 status={card.status}
                 task={card.task}
@@ -56,7 +58,7 @@ class App extends Component {
           {cardArr
             .filter(x => x.status === "active")
             .map(card => (
-              <Card
+              <Column
                 key={card.id.toString()}
                 status={card.status}
                 task={card.task}
@@ -69,7 +71,7 @@ class App extends Component {
           {cardArr
             .filter(x => x.status === "done")
             .map(card => (
-              <Card
+              <Column
                 key={card.id.toString()}
                 status={card.status}
                 task={card.task}
@@ -82,27 +84,28 @@ class App extends Component {
   }
 }
 
-function Column(props) {
-  return (
-    <div>
-      <h1>{props.status}</h1>
-      <div>
-        <Card />
-      </div>
-    </div>
-  );
-}
+// function Column(props) {
+//   return (
+//     <div id={props.status + "column"} className="column">
+//       <Card class={props.status} status={props.status} task={props.task} />
+//     </div>
+//   );
+// }
 
-function Card(props) {
-  return (
-    <div className={props.class}>
-      <h2>Status: {props.status}</h2>
-      <h3>Task: {props.task}</h3>
-      <button>Delete</button>
-      <button>Edit</button>
-    </div>
-  );
-}
+// function Card(props) {
+//   return (
+//     <div className={props.class}>
+//       <h2>Status: {props.status}</h2>
+//       <h3>Task: {props.task}</h3>
+//       <form className="delete" action="tasks/delete" method="POST">
+//         <button>Delete</button>
+//       </form>
+//       <form className="edit" action="tasks/edit" method="POST">
+//         <button>Edit</button>
+//       </form>
+//     </div>
+//   );
+// }
 
 // function addForm() {
 //   function handleClick(e) {
