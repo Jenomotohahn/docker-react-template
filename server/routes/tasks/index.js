@@ -47,7 +47,7 @@ router.route("/edit/:id").post((req, res) => {
   console.log("EDIT EDIT!!");
   // console.log("req.body", req.body);
   return new req.database.Task({ id: req.params.id })
-    .save({ status: "active", task: "tas" }, { patch: true })
+    .save({ status: req.body.status, task: req.body.task }, { patch: true })
     .then(card => {
       console.log("card has been edited");
       res.redirect("/");

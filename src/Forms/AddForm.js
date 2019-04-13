@@ -11,14 +11,14 @@ export const AddForm = () => (
       <div>
         <label htmlFor="select">Status:</label>
         <select name="status">
-          <option name="status" value="active">
-            Active
+          <option name="status" defaultValue="active">
+            active
           </option>
-          <option name="status" value="pending">
-            Pending
+          <option name="status" defaultValue="pending">
+            pending
           </option>
-          <option name="status" value="done">
-            Done
+          <option name="status" defaultValue="done">
+            done
           </option>
         </select>
       </div>

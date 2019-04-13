@@ -5,9 +5,18 @@ class Card extends Component {
     super(props);
     this.state = {
       showEdit: false,
-      task: props.task
+      task: this.props.task
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange = e => {
+    this.setState({ task: e.target.task });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+  };
   editForm = () => {
     this.setState({ showEdit: true });
   };
@@ -15,6 +24,7 @@ class Card extends Component {
   cancel = () => {
     this.setState({ showEdit: false });
   };
+
   render() {
     const { showEdit } = this.state;
     let cardDisplay;
@@ -46,25 +56,31 @@ class Card extends Component {
             className="edit"
             action={`tasks/edit/${this.props.id}`}
             method="POST"
-          />
-          <div>
-            <label htmlFor="select">Status:</label>
-            <select name="status" value={this.props.status}>
-              <option name="status" value="active">
-                Active
-              </option>
-              <option name="status" value="pending">
-                Pending
-              </option>
-              <option name="status" value="done">
-                Done
-              </option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="task">Task: </label>
-            <input name="task" contentEditable="true" value={this.props.task} />
-          </div>
+          >
+            <div>
+              <label htmlFor="select">Status:</label>
+              <select name="status" defaultValue={this.props.status}>
+                <option name="status" defaultValue="active">
+                  active
+                </option>
+                <option name="status" defaultValue="pending">
+                  pending
+                </option>
+                <option name="status" defaultValue="done">
+                  done
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="task">Task: </label>
+              <input
+                name="task"
+                defaultValue={this.props.task}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
           <button onClick={this.cancel}>Cancel</button>
         </div>
       );
