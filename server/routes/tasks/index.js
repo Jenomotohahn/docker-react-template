@@ -3,7 +3,7 @@ const router = express.Router();
 router
   .route("/")
   .get((req, res) => {
-    // console.log("hello");
+    console.log("hello");
     return new req.database.Task()
       .fetchAll()
       .then(data => {
@@ -35,6 +35,21 @@ router.route("/delete/:id").post((req, res) => {
     .destroy()
     .then(card => {
       console.log("card has been deleted", card);
+      res.redirect("/");
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+router.route("/edit/:id").post((req, res) => {
+  console.log("EDIT EDIT!!");
+  // console.log("req.body", req.body);
+  return new req.database.Task({ id: req.params.id })
+    .save({ status: "active", task: "tas" }, { patch: true })
+    .then(card => {
+      console.log("card has been edited");
       res.redirect("/");
     })
     .catch(err => {

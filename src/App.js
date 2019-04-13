@@ -13,7 +13,6 @@ class App extends Component {
     };
 
     this.getData = this.getData.bind(this);
-    this.getData();
   }
 
   getData() {
@@ -32,9 +31,10 @@ class App extends Component {
       });
   }
 
-  // componentDidMount() {
-  //   console.log("render2", this.state);
-  // }
+  componentDidMount() {
+    console.log("render2", this.state);
+    this.getData();
+  }
 
   render() {
     const { cardArr } = this.state;
