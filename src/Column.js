@@ -3,6 +3,7 @@ import "./App.css";
 import Card from "./Card";
 
 const Column = props => {
+  console.log("column props", props);
   return (
     <div id={props.status + "column"} className="column">
       <Card

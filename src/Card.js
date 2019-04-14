@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEdit: false,
-      task: this.props.task
+      showEdit: false
+      //   task: this.props.task
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -27,6 +28,7 @@ class Card extends Component {
 
   render() {
     const { showEdit } = this.state;
+    console.log("cards.js", this.props);
     let cardDisplay;
     if (!showEdit) {
       cardDisplay = (
@@ -110,4 +112,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default connect()(Card);

@@ -50,6 +50,20 @@ body {
   border: solid;
   background-color: red;
 }
+#main {
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#pageHeader {
+  text-align: center;
+}
 
 @keyframes App-logo-spin {
   from {

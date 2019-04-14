@@ -3,7 +3,7 @@ const router = express.Router();
 router
   .route("/")
   .get((req, res) => {
-    console.log("hello");
+    console.log("hello, you've reached the database");
     return new req.database.Task()
       .fetchAll()
       .then(data => {
